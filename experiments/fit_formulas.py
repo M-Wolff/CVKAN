@@ -84,6 +84,7 @@ def run_experiments_physics(run_dataset, run_model):
 
     # holography formula
     holography = lambda x: torch.abs(x[:, [0]] + x[:, [1]]) ** 2 * x[:, [2]]
+    # only generate train samples and no test samples because run_crossval later splits them into k folds
     dataset_holography_c = create_complex_dataset(holography, ranges=[-2,2], n_var=3, train_num=_num_samples, test_num=0)
     dataset_holography_c = CSVDataset(dataset_holography_c, input_vars=["Er1", "E0", "Er2"], output_vars=["holography"],
                                       categorical_vars=[])
@@ -98,12 +99,13 @@ def run_experiments_physics(run_dataset, run_model):
     circuit_real_inputs_helper = lambda x: (torch.complex(x[:, [0]], x[:, [1]]) /
                                      torch.complex(1+x[:, [2]]/x[:, [3]] - x[:, [4]]**2 * x[:, [5]] * x[:, [6]], x[:, [4]] * (x[:, [5]] / x[:, [3]] + x[:, [2]] * x[:, [6]])))
     circuit_real_inputs = lambda x: torch.stack((circuit_real_inputs_helper(x).real, circuit_real_inputs_helper(x).imag), dim=1).squeeze()
-
+    # only generate train samples and no test samples because run_crossval later splits them into k folds
     dataset_circuit_c = create_complex_dataset(circuit_complex_inputs, ranges=[-2, 2], n_var=6, train_num=_num_samples, test_num=0)
     # zero out imaginary parts of real-input-variables in complex dataset
     for var_idx in [1,2,3,4,5]:
         dataset_circuit_c["train_input"][:, var_idx] = torch.complex(dataset_circuit_c["train_input"][:, var_idx].real, 0*dataset_circuit_c["train_input"][:, var_idx].imag)
     dataset_circuit_c = CSVDataset(dataset_circuit_c, input_vars=["U_g", "R_g", "R_l", "w", "L", "C"], output_vars=["U_{rl}"], categorical_vars=[])
+    # only generate train samples and no test samples because run_crossval later splits them into k folds
     dataset_circuit_r = create_dataset(circuit_real_inputs, ranges=[-2, 2], n_var=7, train_num=_num_samples, test_num=0)
     dataset_circuit_r = CSVDataset(dataset_circuit_r, input_vars=["U_g.real","U_g.imag", "R_g", "R_l", "w", "L", "C"],
                                    output_vars=["U_{rl}.real", "U_{rl}.imag"], categorical_vars=[])
@@ -200,6 +202,7 @@ def run_experiments_funcfitting(run_dataset = "all", run_model="all"):
     elif run_model == "cvkan":
         run_models[2] = True
 
+    # only generate train samples and no test samples because run_crossval later splits them into k folds
 
     dataset_sq_c = create_complex_dataset(sq, ranges=[-2,2], n_var=1, train_num=5000, test_num=0)
     dataset_sq_c = CSVDataset(dataset_sq_c, input_vars=["z"], output_vars=["z^2"], categorical_vars=[])

@@ -23,6 +23,6 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
 
 ## How to use
 
-### $\mathbb{C}$KAN
+### $`\mathbb{C}`$KAN
 
 ### Plotting
