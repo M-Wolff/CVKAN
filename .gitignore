@@ -1,0 +1,4 @@
+# exclude backups of results.json
+/experiments/results_backups
+# exclude pycache
+**/__pycache__
