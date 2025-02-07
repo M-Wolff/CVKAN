@@ -13,13 +13,20 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [fit_formulas.py](experiments/fit_formulas.py): Experiments for function fitting. Simple arbitrary $\left(z^2, \quad \sin(z), \quad z_1 \cdot z_2, \quad (z_1^2 + z_2^2)^2 \right)\quad$ as well as physically meaningful formulae: (circuit & holography).
   - [knot_dataset.py](experiments/knot_dataset.py): Experiments for knot classification.
   - [results.json](experiments/results.json): All of our results as a list of dictionaries, stored as JSON
-  - [run_crossval.py](experiments/run_crossval.py): 
-- [utils](utils): miscellanious utils
+  - [run_crossval.py](experiments/run_crossval.py): Script to run k-fold cross-validation on a dataset and model given. Also stores the results with additional meta-data in a json file 
+- [models](models):
+  - [functions](models/functions): different helper functions ($`\mathbb{C}`$SiLU, BatchNorms)
+    - [CompleySilu.py](models/functions/ComplexSilu.py): Two different variants of complex SiLU
+    - [CV_LayerNorm.py](models/functions/CV_LayerNorm.py): Different complex-valued BatchNorm approaches and LayerNorm
+  - [wrapper](models/wrapper):
+  - [CVKAN.py](models/CVKAN.py): 
+  - [FastKAN.py](models/FastKAN.py): 
+- [utils](utils): miscellaneous utils
   - [dataloading](utils/dataloading): 
     - [create_complex_dataset.py](utils/dataloading/create_complex_dataset.py)
   - [plotting](utils/plotting): 
 - [images](images): The images used in our paper
-- [models](models):
+
 
 ## How to use
 

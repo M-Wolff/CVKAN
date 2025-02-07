@@ -1,7 +1,7 @@
 """
 File: CV_LayerNorm.py
 Author: Matthias Wolff, Florian Eilers, Xiaoyi Jiang
-Description: three different complex-valued BatchNorm approaches and one complex-valued LayerNorm
+Description: Three different complex-valued BatchNorm approaches and one complex-valued LayerNorm
 """
 import torch.nn as nn
 import torch
