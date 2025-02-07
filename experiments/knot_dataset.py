@@ -99,11 +99,11 @@ def run_experiments():
         fastkan = FastKAN(layers_hidden=arch,
                           num_grids=num_grids, use_batchnorm=use_batchnorm, grid_mins=-2, grid_maxs=2)
         run_crossval(fastkan, knot_dataset_real, dataset_name="knot_r", loss_fn_backprop=crossentropy_loss, loss_fns=loss_fns, device=_DEVICE,
-                   batch_size=10000, logging_interval=50, add_softmax_lastlayer=True, epochs=200, complex_classification_task=False)
+                     batch_size=10000, logging_interval=50, add_softmax_lastlayer=True, epochs=200, convert_model_output_to_real=False)
         pykan = PyKANWrapper(layers_hidden=arch, num_grids=num_grids, update_grid=use_batchnorm, device=_DEVICE, grid_range=[-2,2])
         run_crossval(pykan, knot_dataset_real, dataset_name="knot_r", loss_fn_backprop=loss_fns["cross_entropy"],
                      loss_fns=loss_fns,
-                     batch_size=-1, add_softmax_lastlayer=True, epochs=200, complex_classification_task=False, device=torch.device("cuda"))
+                     batch_size=-1, add_softmax_lastlayer=True, epochs=200, convert_model_output_to_real=False, device=torch.device("cuda"))
 
     # Experiments for our CVKAN
     arch = [in_features_complex, 2, num_classes]
@@ -113,7 +113,7 @@ def run_experiments():
             cvkan = CVKANWrapper(layers_hidden=arch, num_grids=num_grids, rho=1, use_norm=batchnorm, grid_mins=-2, grid_maxs=2, zsilu_type=zsilu_type)
             run_crossval(cvkan, knot_dataset_complex, dataset_name="knot_c", loss_fn_backprop=crossentropy_loss,
                          loss_fns=loss_fns, device=_DEVICE,
-                         batch_size=10000, logging_interval=50, add_softmax_lastlayer=True, epochs=200, complex_classification_task=True)
+                         batch_size=10000, logging_interval=50, add_softmax_lastlayer=True, epochs=200, convert_model_output_to_real=True)
 
 
 def train_knot_feature_subset():
@@ -149,7 +149,7 @@ def train_knot_feature_subset():
         run_crossval(cvkan, knot_dataset_complex_reduced, dataset_name="knot_c_"+str(indices), loss_fn_backprop=crossentropy_loss,
                      loss_fns=loss_fns, device=_DEVICE,
                      batch_size=10000, logging_interval=50, add_softmax_lastlayer=True, epochs=200,
-                     complex_classification_task=True)
+                     convert_model_output_to_real=True)
 
 if __name__ == "__main__":
     #run_experiments()

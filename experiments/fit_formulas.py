@@ -137,18 +137,18 @@ def run_experiments_physics(run_dataset, run_model):
                 pykan = PyKANWrapper(layers_hidden=arch, num_grids=64, update_grid=True, device="cuda")
                 run_crossval(pykan, dataset_holography_r, dataset_name="ph_holo_r"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop,
                              loss_fns=loss_fns,
-                             batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                             batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
             if run_models[1]:
                 fastkan = FastKAN(layers_hidden=arch, num_grids=64, use_batchnorm=True)
                 run_crossval(fastkan, dataset_holography_r, dataset_name="ph_holo_r"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                             batch_size=10000, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                             batch_size=10000, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         for arch in [[3,1], [3,1,1], [3,3,1], [3,10,1], [3,10,3,1], [3,10,5,3,1]]:
             if run_models[2]:
                 cvkan = CVKANWrapper(layers_hidden=arch, num_grids=8, rho=1, use_norm=Norms.BatchNorm)
                 run_crossval(cvkan, dataset_holography_c, dataset_name="ph_holo_c"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop,
                              loss_fns=loss_fns,
                              batch_size=10000, add_softmax_lastlayer=False, epochs=1000,
-                             complex_classification_task=False)
+                             convert_model_output_to_real=False)
     if run_datasets[1]:  # circuit
         for arch in [[7,1,2], [7,5,2], [7,10,2], [7,10,5,3,2]]:
             if run_models[0]:
@@ -157,18 +157,18 @@ def run_experiments_physics(run_dataset, run_model):
                 pykan = PyKANWrapper(layers_hidden=arch, num_grids=64, update_grid=True, device="cuda")
                 run_crossval(pykan, dataset_circuit_r, dataset_name="ph_circuit_r"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop,
                              loss_fns=loss_fns,
-                             batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                             batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
             if run_models[1]:
                 fastkan = FastKAN(layers_hidden=arch, num_grids=64, use_batchnorm=True)
                 run_crossval(fastkan, dataset_circuit_r, dataset_name="ph_circuit_r"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                             batch_size=10000, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                             batch_size=10000, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         for arch in [[6,1], [6,1,1], [6,3,1], [6,10,1], [6,10,3,1], [6,10,5,3,1]]:
             if run_models[2]:
                 cvkan = CVKANWrapper(layers_hidden=arch, num_grids=8, rho=1, use_norm=Norms.BatchNorm)
                 run_crossval(cvkan, dataset_circuit_c, dataset_name="ph_circuit_c"+_dataset_name_suffix, loss_fn_backprop=loss_fn_backprop,
                              loss_fns=loss_fns,
                              batch_size=10000, add_softmax_lastlayer=False, epochs=1000,
-                             complex_classification_task=False)
+                             convert_model_output_to_real=False)
 
 
 
@@ -227,28 +227,28 @@ def run_experiments_funcfitting(run_dataset = "all", run_model="all"):
             pykan = PyKANWrapper(layers_hidden=[2, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sq_r, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             pykan = PyKANWrapper(layers_hidden=[2, 3, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sq_r, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[1]:
             fastkan = FastKAN(layers_hidden=[2, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sq_r, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             fastkan = FastKAN(layers_hidden=[2, 3, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sq_r, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[2]:
             cvkan = CVKANWrapper(layers_hidden=[1, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sq_c, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             cvkan = CVKANWrapper(layers_hidden=[1,2, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sq_c, dataset_name="ff_square", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
     # Square Square Dataset = (z_1**2 + z_2**2)**2
     if run_datasets[1]:
@@ -256,28 +256,28 @@ def run_experiments_funcfitting(run_dataset = "all", run_model="all"):
             pykan = PyKANWrapper(layers_hidden=[4, 2, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sqsq_r, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             pykan = PyKANWrapper(layers_hidden=[4, 6, 2, 3, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sqsq_r, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[1]:
             fastkan = FastKAN(layers_hidden=[4, 2, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sqsq_r, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             fastkan = FastKAN(layers_hidden=[4,6,2,3,2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sqsq_r, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[2]:
             cvkan = CVKANWrapper(layers_hidden=[2,1, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sqsq_c, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             cvkan = CVKANWrapper(layers_hidden=[2, 4, 2, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sqsq_c, dataset_name="ff_squaresquare", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
     # Mult Dataset = z_1 * z_2
     if run_datasets[2]:
@@ -285,29 +285,29 @@ def run_experiments_funcfitting(run_dataset = "all", run_model="all"):
             pykan = PyKANWrapper(layers_hidden=[4, 4, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_mult_r, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             pykan = PyKANWrapper(layers_hidden=[4, 8, 4, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_mult_r, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[1]:
             fastkan = FastKAN(layers_hidden=[4, 4, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_mult_r, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             # should be optimal fastkan able to compute z1 * z2
             fastkan = FastKAN(layers_hidden=[4,8,4,2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_mult_r, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[2]:
             cvkan = CVKANWrapper(layers_hidden=[2,2, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_mult_c, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             cvkan = CVKANWrapper(layers_hidden=[2, 4, 2, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_mult_c, dataset_name="ff_mult", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
     # sin Dataset = sin(z)
     if run_datasets[3]:
@@ -315,29 +315,29 @@ def run_experiments_funcfitting(run_dataset = "all", run_model="all"):
             pykan = PyKANWrapper(layers_hidden=[2, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sin_r, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             pykan = PyKANWrapper(layers_hidden=[2, 4, 4, 2], num_grids=64, update_grid=True, device="cuda")
             run_crossval(pykan, dataset_sin_r, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop,
                          loss_fns=loss_fns,
-                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=-1, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[1]:
             fastkan = FastKAN(layers_hidden=[2, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sin_r, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             # should be correct network size (sin of complex number = cosh ...)
             fastkan = FastKAN(layers_hidden=[2, 4,4, 2], num_grids=64, use_batchnorm=True)
             run_crossval(fastkan, dataset_sin_r, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
         if run_models[2]:
             cvkan = CVKANWrapper(layers_hidden=[1, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sin_c, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
             cvkan = CVKANWrapper(layers_hidden=[1,2, 1], num_grids=8, rho=1, use_norm=Norms.BatchNorm)
             run_crossval(cvkan, dataset_sin_c, dataset_name="ff_sin", loss_fn_backprop=loss_fn_backprop, loss_fns=loss_fns,
-                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, complex_classification_task=False)
+                         batch_size=500, add_softmax_lastlayer=False, epochs=1000, convert_model_output_to_real=False)
 
 
 
