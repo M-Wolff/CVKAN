@@ -18,9 +18,12 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [functions](models/functions): different helper functions ($`\mathbb{C}`$SiLU, BatchNorms)
     - [CompleySilu.py](models/functions/ComplexSilu.py): Two different variants of complex SiLU
     - [CV_LayerNorm.py](models/functions/CV_LayerNorm.py): Different complex-valued BatchNorm approaches and LayerNorm
-  - [wrapper](models/wrapper):
-  - [CVKAN.py](models/CVKAN.py): 
-  - [FastKAN.py](models/FastKAN.py): 
+  - [wrapper](models/wrapper): Folder contains Wrappers for every KAN to make them work with our KanPlotter and KanExplainer
+    - [CVKANWrapper.py](models/wrapper/CVKANWrapper.py): Wrapper for CVKAN
+    - [PyKANWrapper.py](models/wrapper/PyKANWrapper.py): Wrapper for pyKAN
+    - [WrapperTemplate.py](models/wrapper/WrapperTemplate.py): Template (Interface) for all specific KAN Wrappers
+  - [CVKAN.py](models/CVKAN.py): $`\mathbb{C}`$KAN model definition
+  - [FastKAN.py](models/FastKAN.py): modified version of FastKAN model definition, originally from Github Repository [ZiyaoLi/fast-kan](https://github.com/ZiyaoLi/fast-kan/blob/master/fastkan/fastkan.py)
 - [utils](utils): miscellaneous utils
   - [dataloading](utils/dataloading): 
     - [create_complex_dataset.py](utils/dataloading/create_complex_dataset.py)

@@ -63,7 +63,7 @@ def run_crossval(model, dataset_full_train: CSVDataset, dataset_name, loss_fn_ba
     results["dataset_name"] = dataset_name
     results["kfolds"] = k
     results["num_trainable_params"] = get_num_parameters(model)
-    results["zsilu_type"] = model.zsilu_type if hasattr(model, "zsilu_type") else None
+    results["zsilu_type"] = model.csilu_type if hasattr(model, "csilu_type") else None
     results["start_timestamp"] = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     # iterate over the k folds

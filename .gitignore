@@ -2,3 +2,5 @@
 /experiments/results_backups
 # exclude pycache
 **/__pycache__
+# exclude PyCharm
+.idea
