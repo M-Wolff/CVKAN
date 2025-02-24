@@ -10,10 +10,12 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
 ## Table of Contents
 
 - [experiments](experiments): Scripts for our experiments and corresponding results
-  - [fit_formulas.py](experiments/fit_formulas.py): Experiments for function fitting. Simple arbitrary $\left(z^2, \quad \sin(z), \quad z_1 \cdot z_2, \quad (z_1^2 + z_2^2)^2 \right)\quad$ as well as physically meaningful formulae: (circuit & holography).
-  - [knot_dataset.py](experiments/knot_dataset.py): Experiments for knot classification.
+  - [fit_formulas.py](experiments/fit_formulas.py): Experiments for function fitting. Simple arbitrary $\left(z^2, \quad \sin(z), \quad z_1 \cdot z_2, \quad (z_1^2 + z_2^2)^2 \right)\quad$ as well as physically meaningful formulae (circuit & holography)
+  - [knot_dataset.py](experiments/knot_dataset.py): Experiments for knot classification
   - [results.json](experiments/results.json): All of our results as a list of dictionaries, stored as JSON
-  - [run_crossval.py](experiments/run_crossval.py): Script to run k-fold cross-validation on a dataset and model given. Also stores the results with additional meta-data in a json file 
+  - [run_crossval.py](experiments/run_crossval.py): Script to run k-fold cross-validation on a dataset and model given. Also stores the results with additional meta-data in a json file
+- [images](images): The images used in our paper
+  - [visualizations.py](images/visualizations.py): Script to create some of the images we used in our paper
 - [models](models):
   - [functions](models/functions): different helper functions ($`\mathbb{C}`$SiLU, BatchNorms)
     - [CompleySilu.py](models/functions/ComplexSilu.py): Two different variants of complex SiLU
@@ -26,11 +28,19 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [FastKAN.py](models/FastKAN.py): modified version of FastKAN model definition, originally from Github Repository [ZiyaoLi/fast-kan](https://github.com/ZiyaoLi/fast-kan/blob/master/fastkan/fastkan.py)
 - [train/train_loop.py](train/train_loop.py): Main loop for training all kinds of KANs on different datasets using custom loss functions
 - [utils](utils): miscellaneous utils
-  - [dataloading](utils/dataloading): 
-    - [create_complex_dataset.py](utils/dataloading/create_complex_dataset.py)
-  - [plotting](utils/plotting): 
+  - [dataloading](utils/dataloading): utils for dataloading
+    - [create_complex_dataset.py](utils/dataloading/create_complex_dataset.py): Create a complex-valued dataset dictionary based on a lambda expression as symbolic formula.
+    - [crossval_splitter.py](utils/dataloading/crossval_splitter.py): Automatically create datasets for k-fold cross-validation
+    - [csv_dataloader.py](utils/dataloading/csv_dataloader.py): Dataloader and Dataset-Class for a comma-seperated CSV file or dictionary
+  - [plotting](utils/plotting): utils for plotting
+    - [cplot.py](utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $`z^2`$)
     - [cplotting_tools.py](utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
-- [images](images): The images used in our paper
+    - [plot_kan.py](utils/plotting/plot_kan.py): 
+  - [eval_model.py](utils/eval_model.py): 
+  - [explain_kan.py](utils/explain_kan.py): 
+  - [loss_functions.py](utils/loss_functions.py): MSE, MAE and cross entropy loss-functions
+  - [misc.py](utils/misc.py): Miscellaneous short scripts and methods
+
 
 
 ## How to use
