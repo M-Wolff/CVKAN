@@ -6,6 +6,9 @@ Link to Paper: https://arxiv.org/abs/2502.02417
 
 ### Abstract
 In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that $`\mathbb{C}`$KAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed $`\mathbb{C}`$KAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
+<div style="text-align: center;">
+<img src="images/cvkan_sqsq_plot_withcolorbar.png" alt="drawing" width="400"/>
+</div>
 
 ## Table of Contents
 
@@ -21,7 +24,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
     - [CompleySilu.py](models/functions/ComplexSilu.py): Two different variants of complex SiLU
     - [CV_LayerNorm.py](models/functions/CV_LayerNorm.py): Different complex-valued BatchNorm approaches and LayerNorm
   - [wrapper](models/wrapper): Folder contains Wrappers for every KAN to make them work with our KanPlotter and KanExplainer
-    - [CVKANWrapper.py](models/wrapper/CVKANWrapper.py): Wrapper for CVKAN
+    - [CVKANWrapper.py](models/wrapper/CVKANWrapper.py): Wrapper for our CVKAN
     - [PyKANWrapper.py](models/wrapper/PyKANWrapper.py): Wrapper for pyKAN
     - [WrapperTemplate.py](models/wrapper/WrapperTemplate.py): Template (Interface) for all specific KAN Wrappers
   - [CVKAN.py](models/CVKAN.py): $`\mathbb{C}`$KAN model definition
@@ -36,7 +39,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
     - [cplot.py](utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $`z^2`$)
     - [cplotting_tools.py](utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
     - [plot_kan.py](utils/plotting/plot_kan.py): 
-  - [eval_model.py](utils/eval_model.py): 
+  - [eval_model.py](utils/eval_model.py): Evaluation of models and plotting of confusion matrix
   - [explain_kan.py](utils/explain_kan.py): 
   - [loss_functions.py](utils/loss_functions.py): MSE, MAE and cross entropy loss-functions
   - [misc.py](utils/misc.py): Miscellaneous short scripts and methods
