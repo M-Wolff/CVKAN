@@ -4,11 +4,15 @@ University of Münster, Department of Computer Science
 
 Link to Paper: https://arxiv.org/abs/2502.02417
 
+---
+
 ### Abstract
 In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that $`\mathbb{C}`$KAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed $`\mathbb{C}`$KAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
-<div style="text-align: center;">
+<p align="center">
 <img src="images/cvkan_sqsq_plot_withcolorbar.png" alt="drawing" width="400"/>
-</div>
+</p>
+
+---
 
 ## Table of Contents
 
@@ -45,6 +49,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [misc.py](utils/misc.py): Miscellaneous short scripts and methods
 
 
+---
 
 ## How to use
 
