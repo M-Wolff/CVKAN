@@ -47,6 +47,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
     - [plot_kan.py](utils/plotting/plot_kan.py): 
   - [eval_model.py](utils/eval_model.py): Evaluation of models and plotting of confusion matrix
   - [explain_kan.py](utils/explain_kan.py): 
+  - [json_editor.py](utils/json_editor.py): Manipulate the results.json file
   - [loss_functions.py](utils/loss_functions.py): MSE, MAE and cross entropy loss-functions
   - [misc.py](utils/misc.py): Miscellaneous short scripts and methods
 
