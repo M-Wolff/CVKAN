@@ -44,7 +44,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [plotting](utils/plotting): utils for plotting
     - [cplot.py](utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $`z^2`$)
     - [cplotting_tools.py](utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
-    - [plot_kan.py](utils/plotting/plot_kan.py): 
+    - [plot_kan.py](utils/plotting/plot_kan.py): Plot KAN models (real-valued as well as complex-valued) with interactive elements
   - [eval_model.py](utils/eval_model.py): Evaluation of models and plotting of confusion matrix
   - [explain_kan.py](utils/explain_kan.py): Explain KAN models by calculating edge relevance scores in the same way as Ziming Liu's pyKAN 2.0
   - [json_editor.py](utils/json_editor.py): Manipulate the results.json file
