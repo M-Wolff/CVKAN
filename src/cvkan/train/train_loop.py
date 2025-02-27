@@ -6,7 +6,7 @@ Description: Main loop for training all kinds of KANs on any dataset with arbitr
 import torch
 from torch.utils.data import DataLoader
 
-from models.wrapper.PyKANWrapper import PyKANWrapper
+from src.models.wrapper.PyKANWrapper import PyKANWrapper
 from utils.dataloading.csv_dataloader import CSVDataset
 from utils.eval_model import eval_model
 from utils.misc import get_num_parameters

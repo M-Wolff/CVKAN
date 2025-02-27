@@ -11,9 +11,10 @@ import shutil
 
 if __name__ == "__main__":
     # input results.json
-    p_in = Path("/home/m_wolf37/Sciebo/Doktorand/Workspace/CVKAN/experiments/results.json")
+    p_in = Path("/src/experiments/results.json")
     # create backup in results_backup folder
-    p_backup = Path(f"/home/m_wolf37/Sciebo/Doktorand/Workspace/CVKAN/experiments/results_backups/results_backup_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json")
+    p_backup = Path(
+        f"/src/experiments/results_backups/results_backup_{datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json")
     p_backup.parent.mkdir(exist_ok=True, parents=True)
     shutil.copy(p_in, p_backup)
     # read original json

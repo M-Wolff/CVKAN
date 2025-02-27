@@ -16,7 +16,7 @@ import torch
 from matplotlib import pyplot as plt
 from matplotlib.widgets import Slider, CheckButtons, TextBox
 
-from models.wrapper.WrapperTemplate import WrapperTemplate
+from src.models.wrapper.WrapperTemplate import WrapperTemplate
 from utils.explain_kan import KANExplainer, DummyKANExplainer
 import utils.plotting.cplotting_tools as cplot
 

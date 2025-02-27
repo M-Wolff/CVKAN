@@ -3,11 +3,11 @@ File: PyKANWrapper.py
 Author: Matthias Wolff, Florian Eilers, Xiaoyi Jiang
 Description: Wrapper for pyKAN to make it compatible with our KanPlotter and KanExplainer.
 """
-from datetime import time, datetime
+from datetime import datetime
 import numpy as np
 import torch
 
-from models.wrapper.WrapperTemplate import WrapperTemplate
+from src.models.wrapper.WrapperTemplate import WrapperTemplate
 from kan import KAN as PyKAN
 
 

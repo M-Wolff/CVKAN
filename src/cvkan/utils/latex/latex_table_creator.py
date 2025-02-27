@@ -249,7 +249,7 @@ def function_fitting_table():
 
 
 if __name__ == "__main__":
-    p = Path("/home/m_wolf37/Sciebo/Doktorand/Workspace/CVKAN/experiments/results.json")
+    p = Path("/src/experiments/results.json")
     with open(p, "r", encoding="utf-8") as f:
         results_json = json.load(f)
 

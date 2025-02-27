@@ -6,11 +6,9 @@ Description: Wrapper for CVKAN to make it compatible with our KanPlotter and Kan
 import numpy as np
 import torch
 
-from models.CVKAN import CVKAN, Norms
-from models.functions.ComplexSilu import complex_silu_realweights, complex_silu_complexweight
-from models.wrapper.WrapperTemplate import WrapperTemplate
-from utils.dataloading.create_complex_dataset import create_complex_dataset
-from utils.dataloading.csv_dataloader import CSVDataset
+from src.models.CVKAN import CVKAN
+from src.models.functions.ComplexSilu import complex_silu_realweights, complex_silu_complexweight
+from src.models.wrapper.WrapperTemplate import WrapperTemplate
 
 
 class CVKANWrapper(CVKAN, WrapperTemplate):

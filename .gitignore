@@ -1,6 +1,11 @@
 # exclude backups of results.json
-/experiments/results_backups
+/src/cvkan/experiments/results_backups
 # exclude pycache
 **/__pycache__
 # exclude PyCharm
 .idea
+
+# exclude distribution builds
+dist
+# exclude egg-info
+src/cvkan.egg-info
