@@ -27,5 +27,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/M-Wolff/CVKAN"
-Issues = "https://github.com/M-Wolff/CVKAN/issues"
+homepage = "https://github.com/M-Wolff/CVKAN"
+github = "https://github.com/M-Wolff/CVKAN"
+issues = "https://github.com/M-Wolff/CVKAN/issues"
+arxiv = "https://arxiv.org/abs/2502.02417"
