@@ -39,6 +39,8 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
     - [create_complex_dataset.py](utils/dataloading/create_complex_dataset.py): Create a complex-valued dataset dictionary based on a lambda expression as symbolic formula.
     - [crossval_splitter.py](utils/dataloading/crossval_splitter.py): Automatically create datasets for k-fold cross-validation
     - [csv_dataloader.py](utils/dataloading/csv_dataloader.py): Dataloader and Dataset-Class for a comma-seperated CSV file or dictionary
+  - [latex](utils/latex): Utils to generate LaTeX outputs automatically
+    - [latex_table_creator.py](utils/latex/latex_table_creator.py): Automatically generate resulting LaTeX tables from results.json
   - [plotting](utils/plotting): utils for plotting
     - [cplot.py](utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $`z^2`$)
     - [cplotting_tools.py](utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
@@ -52,7 +54,15 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
 ---
 
 ## How to use
+### Install
+```bash
+pip install cvkan
+```
 
 ### $`\mathbb{C}`$KAN
+````py
+from cvkan import CVKAN
 
+model = CVKAN()
+````
 ### Plotting
