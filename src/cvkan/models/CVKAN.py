@@ -7,10 +7,10 @@ from typing import List
 import torch
 
 
-from src.cvkan.models.functions.CV_LayerNorm import Complex_LayerNorm, Complex_BatchNorm, Complex_BatchNorm_naiv, \
+from .functions.CV_LayerNorm import Complex_LayerNorm, Complex_BatchNorm, Complex_BatchNorm_naiv, \
     Complex_BatchNorm_var
 
-from src.cvkan.models.functions.ComplexSilu import complex_silu_complexweight, complex_silu_realweights
+from .functions.ComplexSilu import complex_silu_complexweight, complex_silu_realweights
 
 class Norms:
     """Enum for Normalization Types"""

@@ -5,7 +5,7 @@ Description: Explain KAN models by calculating edge relevance scores in the same
 """
 import torch
 
-from src.cvkan.models.wrapper import WrapperTemplate
+from ..models.wrapper import WrapperTemplate
 
 
 class KANExplainer():
