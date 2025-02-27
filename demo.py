@@ -5,10 +5,10 @@ from cvkan.utils.loss_functions import MSE, MAE
 
 
 # Generate dataset for f(z)=(z1^2 + z2^2)^2
-f_squared = lambda x: (x[:,0]**2 + x[:,1]**2)**2
+f_squaresquare = lambda x: (x[:,0]**2 + x[:,1]**2)**2
 # create dataset (this is a dictionary with keys 'train_input', 'train_label', 'test_input' and 'test_label', each
 # containing a Tensor as value)
-dataset = create_complex_dataset(f=f_squared, n_var=2, ranges=[-1,1], train_num=5000, test_num=1000)
+dataset = create_complex_dataset(f=f_squaresquare, n_var=2, ranges=[-1,1], train_num=5000, test_num=1000)
 # convert dataset to CSVDataset object for easier handling later
 dataset = CSVDataset(dataset, input_vars=["z1", "z2"], output_vars=["(z1^2 + z2^2)^2"], categorical_vars=[])
 
