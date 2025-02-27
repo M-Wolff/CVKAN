@@ -46,7 +46,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
     - [cplotting_tools.py](utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
     - [plot_kan.py](utils/plotting/plot_kan.py): 
   - [eval_model.py](utils/eval_model.py): Evaluation of models and plotting of confusion matrix
-  - [explain_kan.py](utils/explain_kan.py): 
+  - [explain_kan.py](utils/explain_kan.py): Explain KAN models by calculating edge relevance scores in the same way as Ziming Liu's pyKAN 2.0
   - [json_editor.py](utils/json_editor.py): Manipulate the results.json file
   - [loss_functions.py](utils/loss_functions.py): MSE, MAE and cross entropy loss-functions
   - [misc.py](utils/misc.py): Miscellaneous short scripts and methods
