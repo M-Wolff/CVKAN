@@ -16,9 +16,9 @@ import torch
 from matplotlib import pyplot as plt
 from matplotlib.widgets import Slider, CheckButtons, TextBox
 
-from src.cvkan.models.wrapper import WrapperTemplate
-from src.cvkan.utils.explain_kan import KANExplainer, DummyKANExplainer
-import src.cvkan.utils.plotting.cplotting_tools as cplot
+from ...models.wrapper import WrapperTemplate
+from ..explain_kan import KANExplainer, DummyKANExplainer
+from . import cplotting_tools as cplot
 
 # Default Values for Plot sizes
 _NODE_PLOT_CIRCLESIZE = 0.05  # Node circle size
@@ -28,10 +28,6 @@ _COLORS = list(matplotlib.colors.BASE_COLORS)  # colormap for nodes and their ou
 _COLORS.remove("w")  # plotting in white is pointless
 _LINESTYLES = ["solid", "dashed", "solid"]  # for base, splines, sum (real-valued only)
 
-# +0.5 for centering, * _XSCALE_FACTOR to make plot wider and square-ish (otherwise plot would be super elongated and hard to read)
-# using same axis scaling alone is not enough since that makes circles ellipses and stretches activation function plots
-nodeid2xpos = lambda k, dimsize: (k + 0.5) / dimsize * _XSCALE_FACTOR  # node id within layer to xpos
-xpos2nodeid = lambda x, dimsize: (x/_XSCALE_FACTOR * dimsize) - 0.5  # xpos to node id within one layer
 matplotlib.use('TkAgg')  # use a Backend that supports interactive elements
 
 class KANPlot():
@@ -56,6 +52,10 @@ class KANPlot():
         self.complex_valued = complex_valued
         # scale up x-axis to make the plot less elongated
         self.xscale_factor = len(self.model.get_kan_layers()) + 2
+        # +0.5 for centering, * _XSCALE_FACTOR to make plot wider and square-ish (otherwise plot would be super elongated and hard to read)
+        # using same axis scaling alone is not enough since that makes circles ellipses and stretches activation function plots
+        self.nodeid2xpos = lambda k, dimsize: (k + 0.5) / dimsize * self.xscale_factor  # node id within layer to xpos
+        self.xpos2nodeid = lambda x, dimsize: (x / self.xscale_factor * dimsize) - 0.5  # xpos to node id within one layer
         # for converting relevance score to transparency
         self.beta = 0.3
         # dictionary containing the plotted activation functions with key [function_type][(l,i,j)]
@@ -226,18 +226,18 @@ class KANPlot():
             assert self.model.get_layersizes()[0] == len(input_featurenames)
             # plot input featurenames
             for i in range(self.model.get_layersizes()[0]):
-                textbox_xpos = nodeid2xpos(i, self.model.get_layersizes()[0])
+                textbox_xpos = self.nodeid2xpos(i, self.model.get_layersizes()[0])
                 self.textboxes_input_featurenames[i] = self.axs[0].text(textbox_xpos, -0.2, input_featurenames[i], horizontalalignment='center',
                          verticalalignment='center', rotation=90, fontsize=16, bbox=dict(facecolor='none', edgecolor='red'))
         # plot output names
         for i in range(self.model.get_layersizes()[-1]):
             if self.output_names is not None:
                 assert self.model.get_layersizes()[-1] == len(self.output_names)
-                textbox_xpos = nodeid2xpos(i, self.model.get_layersizes()[-1])
+                textbox_xpos = self.nodeid2xpos(i, self.model.get_layersizes()[-1])
                 self.axs[0].text(textbox_xpos, len(self.model.get_kan_layers()) + 0.25, self.output_names[i], horizontalalignment='center',
                                  verticalalignment='center')
             # plot output node(s)
-            output_node_circle = plt.Circle((nodeid2xpos(i, self.model.get_layersizes()[-1]), len(self.model.get_layersizes()) - 1),
+            output_node_circle = plt.Circle((self.nodeid2xpos(i, self.model.get_layersizes()[-1]), len(self.model.get_layersizes()) - 1),
                                             radius=_NODE_PLOT_CIRCLESIZE,
                                             color="black")
             self.nodes[len(self.model.get_layersizes()) - 1, i] = output_node_circle
@@ -318,9 +318,9 @@ class KANPlot():
             print("failed to match layer")
             return
         # Try to find matching node within this layer
-        node_candidate_id = xpos2nodeid(event.xdata, self.model.get_layersizes()[layer_id])
+        node_candidate_id = self.xpos2nodeid(event.xdata, self.model.get_layersizes()[layer_id])
         node_candidate_id = int(node_candidate_id)
-        node_candidate_xpos = nodeid2xpos(node_candidate_id, self.model.get_layersizes()[layer_id])
+        node_candidate_xpos = self.nodeid2xpos(node_candidate_id, self.model.get_layersizes()[layer_id])
         # if nearest node is close enough to mouse pointer (horizontally)
         if abs(node_candidate_xpos - event.xdata) <= _NODE_PLOT_CIRCLESIZE:
             node_id = round(node_candidate_id)
@@ -411,10 +411,10 @@ class KANPlot():
         # plot every Edge between this one and the next layer
         for i in range(0, in_d):
             # calculate node coordinates
-            node_i_xpos = nodeid2xpos(i, in_d)
+            node_i_xpos = self.nodeid2xpos(i, in_d)
             for j in range(0, out_d):
                 # calculate node coordinates
-                node_j_xpos = nodeid2xpos(j, out_d)
+                node_j_xpos = self.nodeid2xpos(j, out_d)
                 # get activation function values from the model
                 act_xs, act_ys = self.model.plot_curve((layer_id,i,j))
                 # calculate position for plotting the activation function at
