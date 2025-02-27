@@ -13,12 +13,12 @@ import pandas as pd
 import torch
 import torchmetrics
 
-from src.experiments.run_crossval import run_crossval
-from src.models.CVKAN import Norms
-from src.models.FastKAN import FastKAN
-from src.models.wrapper.CVKANWrapper import CVKANWrapper
-from src.models.wrapper.PyKANWrapper import PyKANWrapper
-from utils.dataloading.csv_dataloader import CSVDataset
+from src.cvkan.experiments.run_crossval import run_crossval
+from src.cvkan.models.CVKAN import Norms
+from src.cvkan.models.FastKAN import FastKAN
+from src.cvkan.models.wrapper.CVKANWrapper import CVKANWrapper
+from src.cvkan.models.wrapper.PyKANWrapper import PyKANWrapper
+from src.cvkan.utils.dataloading.csv_dataloader import CSVDataset
 
 def load_knot_dataset(input_filename=Path("/home/m_wolf37/Datasets/knot_theory_invariants.csv"), train_test_split="70:30", complex_dataset=False):
     """

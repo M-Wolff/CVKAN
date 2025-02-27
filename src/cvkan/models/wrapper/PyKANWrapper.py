@@ -7,7 +7,7 @@ from datetime import datetime
 import numpy as np
 import torch
 
-from src.models.wrapper.WrapperTemplate import WrapperTemplate
+from src.cvkan.models.wrapper.WrapperTemplate import WrapperTemplate
 from kan import KAN as PyKAN
 
 

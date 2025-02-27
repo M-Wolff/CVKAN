@@ -9,14 +9,14 @@ import argparse
 import torch
 from kan import create_dataset
 
-from src.experiments.run_crossval import run_crossval
-from src.models.CVKAN import Norms
-from src.models.FastKAN import FastKAN
-from src.models.wrapper.CVKANWrapper import CVKANWrapper
-from src.models.wrapper.PyKANWrapper import PyKANWrapper
-from utils.dataloading.create_complex_dataset import create_complex_dataset
-from utils.dataloading.csv_dataloader import CSVDataset
-from utils.loss_functions import MSE, MAE
+from src.cvkan.experiments.run_crossval import run_crossval
+from src.cvkan.models.CVKAN import Norms
+from src.cvkan.models.FastKAN import FastKAN
+from src.cvkan.models.wrapper.CVKANWrapper import CVKANWrapper
+from src.cvkan.models.wrapper.PyKANWrapper import PyKANWrapper
+from src.cvkan.utils.dataloading.create_complex_dataset import create_complex_dataset
+from src.cvkan.utils.dataloading.csv_dataloader import CSVDataset
+from src.cvkan.utils.loss_functions import MSE, MAE
 
 mse_loss = MSE()
 mae_loss = MAE()

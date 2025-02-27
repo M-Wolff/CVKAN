@@ -16,9 +16,9 @@ import torch
 from matplotlib import pyplot as plt
 from matplotlib.widgets import Slider, CheckButtons, TextBox
 
-from src.models.wrapper.WrapperTemplate import WrapperTemplate
-from utils.explain_kan import KANExplainer, DummyKANExplainer
-import utils.plotting.cplotting_tools as cplot
+from src.cvkan.models.wrapper import WrapperTemplate
+from src.cvkan.utils.explain_kan import KANExplainer, DummyKANExplainer
+import src.cvkan.utils.plotting.cplotting_tools as cplot
 
 # Default Values for Plot sizes
 _NODE_PLOT_CIRCLESIZE = 0.05  # Node circle size

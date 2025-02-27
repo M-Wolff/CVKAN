@@ -32,8 +32,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 from typing import *
 
-from utils.misc import get_num_parameters
-
 
 class SplineLinear(nn.Linear):
     def __init__(self, in_features: int, out_features: int, init_scale: float = 0.1, **kw) -> None:

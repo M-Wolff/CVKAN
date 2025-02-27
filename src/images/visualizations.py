@@ -9,17 +9,17 @@ import numpy as np
 import torch
 import torchmetrics
 
-from experiments.knot_dataset import load_knot_dataset
-from models.CVKAN import Norms
-from models.wrapper.CVKANWrapper import CVKANWrapper
-from train.train_loop import train_kans
-from utils.dataloading.create_complex_dataset import create_complex_dataset
-from utils.dataloading.csv_dataloader import CSVDataset
-from utils.eval_model import plot_confusion_matrix
-from utils.explain_kan import KANExplainer
-from utils.loss_functions import MSE, MAE
-from utils.plotting.plot_kan import KANPlot
-import utils.plotting.cplotting_tools as cplt
+from src.cvkan.experiments.knot_dataset import load_knot_dataset
+from src.cvkan.models.CVKAN import Norms
+from src.cvkan.models.wrapper.CVKANWrapper import CVKANWrapper
+from src.cvkan.train.train_loop import train_kans
+from src.cvkan.utils.dataloading.create_complex_dataset import create_complex_dataset
+from src.cvkan.utils.dataloading.csv_dataloader import CSVDataset
+from src.cvkan.utils.eval_model import plot_confusion_matrix
+from src.cvkan.utils.explain_kan import KANExplainer
+from src.cvkan.utils.loss_functions import MSE, MAE
+from src.cvkan.utils.plotting.plot_kan import KANPlot
+import src.cvkan.utils.plotting.cplotting_tools as cplt
 matplotlib.use('TkAgg')
 plt.rcParams.update({
     "text.usetex": True,

@@ -6,9 +6,9 @@ Description: Wrapper for CVKAN to make it compatible with our KanPlotter and Kan
 import numpy as np
 import torch
 
-from src.models.CVKAN import CVKAN
-from src.models.functions.ComplexSilu import complex_silu_realweights, complex_silu_complexweight
-from src.models.wrapper.WrapperTemplate import WrapperTemplate
+from src.cvkan.models.CVKAN import CVKAN
+from src.cvkan.models.functions.ComplexSilu import complex_silu_realweights, complex_silu_complexweight
+from src.cvkan.models.wrapper.WrapperTemplate import WrapperTemplate
 
 
 class CVKANWrapper(CVKAN, WrapperTemplate):
