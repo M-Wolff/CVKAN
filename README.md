@@ -7,9 +7,9 @@ Link to Paper: https://arxiv.org/abs/2502.02417
 ---
 
 ### Abstract
-In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that $`\mathbb{C}`$KAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed $`\mathbb{C}`$KAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
+In this work we propose $\mathbb{C}$ KAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that $\mathbb{C}$ KAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed $\mathbb{C}$ KAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
 <p align="center">
-<img src="src/images/cvkan_sqsq_plot_withcolorbar.png" alt="drawing" width="400"/>
+<img src="src/images/cvkan_sqsq_plot_withcolorbar.png" alt="<CVKAN Plot>" width="400"/>
 </p>
 
 ---
@@ -24,14 +24,14 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
 - [images](src/images): The images used in our paper
   - [visualizations.py](src/images/visualizations.py): Script to create some of the images we used in our paper
 - [models](src/cvkan/models):
-  - [functions](src/cvkan/models/functions): different helper functions ($`\mathbb{C}`$SiLU, BatchNorms)
+  - [functions](src/cvkan/models/functions): different helper functions ($\mathbb{C}$ SiLU, BatchNorms)
     - [CompleySilu.py](src/cvkan/models/functions/ComplexSilu.py): Two different variants of complex SiLU
     - [CV_LayerNorm.py](src/cvkan/models/functions/CV_LayerNorm.py): Different complex-valued BatchNorm approaches and LayerNorm
   - [wrapper](src/cvkan/models/wrapper): Folder contains Wrappers for every KAN to make them work with our KanPlotter and KanExplainer
     - [CVKANWrapper.py](src/cvkan/models/wrapper/CVKANWrapper.py): Wrapper for our CVKAN
     - [PyKANWrapper.py](src/cvkan/models/wrapper/PyKANWrapper.py): Wrapper for pyKAN
     - [WrapperTemplate.py](src/cvkan/models/wrapper/WrapperTemplate.py): Template (Interface) for all specific KAN Wrappers
-  - [CVKAN.py](src/cvkan/models/CVKAN.py): $`\mathbb{C}`$KAN model definition
+  - [CVKAN.py](src/cvkan/models/CVKAN.py): $\mathbb{C}$ KAN model definition
   - [FastKAN.py](src/cvkan/models/FastKAN.py): modified version of FastKAN model definition, originally from Github Repository [ZiyaoLi/fast-kan](https://github.com/ZiyaoLi/fast-kan/blob/master/fastkan/fastkan.py)
 - [train/train_loop.py](src/cvkan/train/train_loop.py): Main loop for training all kinds of KANs on different datasets using custom loss functions
 - [utils](src/cvkan/utils): miscellaneous utils
@@ -42,7 +42,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
   - [latex](src/cvkan/utils/latex): Utils to generate LaTeX outputs automatically
     - [latex_table_creator.py](src/cvkan/utils/latex/latex_table_creator.py): Automatically generate resulting LaTeX tables from results.json
   - [plotting](src/cvkan/utils/plotting): utils for plotting
-    - [cplot.py](src/cvkan/utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $`z^2`$)
+    - [cplot.py](src/cvkan/utils/plotting/cplot.py): Experiments with plotting standard complex-valued functions (i.e. $z^2$)
     - [cplotting_tools.py](src/cvkan/utils/plotting/cplotting_tools.py): modified version of FastKAN model definition, originally from Github Repository [artmenlope/complex-plotting-tools](https://github.com/artmenlope/complex-plotting-tools/blob/master/cplotting_tools.py)
     - [plot_kan.py](src/cvkan/utils/plotting/plot_kan.py): Plot KAN models (real-valued as well as complex-valued) with interactive elements
   - [eval_model.py](src/cvkan/utils/eval_model.py): Evaluation of models and plotting of confusion matrix
@@ -60,7 +60,7 @@ In this work we propose $`\mathbb{C}`$KAN, a complex-valued KAN, to join the int
 pip install cvkan
 ```
 
-### $`\mathbb{C}`$KAN
+### $\mathbb{C}$ KAN
 ````py
 from cvkan import CVKAN
 
