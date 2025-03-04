@@ -16,14 +16,14 @@ In this work we propose $\mathbb{C}$ KAN, a complex-valued KAN, to join the intr
 
 ## Table of Contents
 
-- [experiments](src/cvkan/experiments): Scripts for our experiments and corresponding results
+- [src/cvkan/experiments](src/cvkan/experiments): Scripts for our experiments and corresponding results
   - [fit_formulas.py](src/cvkan/experiments/fit_formulas.py): Experiments for function fitting. Simple arbitrary $\left(z^2, \quad \sin(z), \quad z_1 \cdot z_2, \quad (z_1^2 + z_2^2)^2 \right)\quad$ as well as physically meaningful formulae (circuit & holography)
   - [knot_dataset.py](src/cvkan/experiments/knot_dataset.py): Experiments for knot classification
   - [results.json](src/cvkan/experiments/results.json): All of our results as a list of dictionaries, stored as JSON
   - [run_crossval.py](src/cvkan/experiments/run_crossval.py): Script to run k-fold cross-validation on a dataset and model given. Also stores the results with additional meta-data in a json file
-- [images](src/images): The images used in our paper
+- [src/images](src/images): The images used in our paper
   - [visualizations.py](src/images/visualizations.py): Script to create some of the images we used in our paper
-- [models](src/cvkan/models):
+- [src/cvkan/models](src/cvkan/models):
   - [functions](src/cvkan/models/functions): different helper functions ($\mathbb{C}$ SiLU, BatchNorms)
     - [CompleySilu.py](src/cvkan/models/functions/ComplexSilu.py): Two different variants of complex SiLU
     - [CV_LayerNorm.py](src/cvkan/models/functions/CV_LayerNorm.py): Different complex-valued BatchNorm approaches and LayerNorm
@@ -33,8 +33,8 @@ In this work we propose $\mathbb{C}$ KAN, a complex-valued KAN, to join the intr
     - [WrapperTemplate.py](src/cvkan/models/wrapper/WrapperTemplate.py): Template (Interface) for all specific KAN Wrappers
   - [CVKAN.py](src/cvkan/models/CVKAN.py): $\mathbb{C}$ KAN model definition
   - [FastKAN.py](src/cvkan/models/FastKAN.py): modified version of FastKAN model definition, originally from Github Repository [ZiyaoLi/fast-kan](https://github.com/ZiyaoLi/fast-kan/blob/master/fastkan/fastkan.py)
-- [train/train_loop.py](src/cvkan/train/train_loop.py): Main loop for training all kinds of KANs on different datasets using custom loss functions
-- [utils](src/cvkan/utils): miscellaneous utils
+- [src/cvkan/train/train_loop.py](src/cvkan/train/train_loop.py): Main loop for training all kinds of KANs on different datasets using custom loss functions
+- [src/cvkan/utils](src/cvkan/utils): miscellaneous utils
   - [dataloading](src/cvkan/utils/dataloading): utils for dataloading
     - [create_complex_dataset.py](src/cvkan/utils/dataloading/create_complex_dataset.py): Create a complex-valued dataset dictionary based on a lambda expression as symbolic formula.
     - [crossval_splitter.py](src/cvkan/utils/dataloading/crossval_splitter.py): Automatically create datasets for k-fold cross-validation
@@ -110,3 +110,4 @@ kan_plotter = KANPlot(cvkan_model,
                       )
 kan_plotter.plot_all()
 ```
+In rare occasions the random initialization of the weights is suboptimal, which leads to the model not training correctly. If you do not end up with an image similar to [the one displayed above](/src/images/cvkan_sqsq_plot_withcolorbar.png) or if the resulting Test MSE is way worse than 0.05, please run again.
