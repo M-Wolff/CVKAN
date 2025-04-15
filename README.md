@@ -7,7 +7,7 @@ Link to Paper: https://arxiv.org/abs/2502.02417
 ---
 
 ### Abstract
-In this work we propose $\mathbb{C}$ KAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that $\mathbb{C}$ KAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed $\mathbb{C}$ KAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
+In this work we propose CVKAN, a complex-valued KAN, to join the intrinsic interpretability of KANs and the advantages of Complex-Valued Neural Networks (CVNNs). We show how to transfer a KAN and the necessary associated mechanisms into the complex domain. To confirm that CVKAN meets expectations we conduct experiments on symbolic complex-valued function fitting and physically meaningful formulae as well as on a more realistic dataset from knot theory. Our proposed CVKAN is more stable and performs on par or better than real-valued KANs while requiring less parameters and a shallower network architecture, making it more explainable.
 <p align="center">
 <img src="src/images/cvkan_sqsq_plot_withcolorbar.svg" alt="<CVKAN Plot>" width="400"/>
 </p>
@@ -31,7 +31,7 @@ In this work we propose $\mathbb{C}$ KAN, a complex-valued KAN, to join the intr
     - [CVKANWrapper.py](src/cvkan/models/wrapper/CVKANWrapper.py): Wrapper for our CVKAN
     - [PyKANWrapper.py](src/cvkan/models/wrapper/PyKANWrapper.py): Wrapper for pyKAN
     - [WrapperTemplate.py](src/cvkan/models/wrapper/WrapperTemplate.py): Template (Interface) for all specific KAN Wrappers
-  - [CVKAN.py](src/cvkan/models/CVKAN.py): $\mathbb{C}$ KAN model definition
+  - [CVKAN.py](src/cvkan/models/CVKAN.py): CVKAN model definition
   - [FastKAN.py](src/cvkan/models/FastKAN.py): modified version of FastKAN model definition, originally from Github Repository [ZiyaoLi/fast-kan](https://github.com/ZiyaoLi/fast-kan/blob/master/fastkan/fastkan.py)
 - [src/cvkan/train/train_loop.py](src/cvkan/train/train_loop.py): Main loop for training all kinds of KANs on different datasets using custom loss functions
 - [src/cvkan/utils](src/cvkan/utils): miscellaneous utils
@@ -78,7 +78,7 @@ dataset = create_complex_dataset(f=f_squaresquare, n_var=2, ranges=[-1,1], train
 dataset = CSVDataset(dataset, input_vars=["z1", "z2"], output_vars=["(z1^2 + z2^2)^2"], categorical_vars=[])
 ```
 
-### $\mathbb{C}$ KAN
+### CVKAN
 ````python
 # create CVKAN model. Note that this is CVKANWrapper, which is basically the same as CVKAN but with additional
 # features for plotting later on
