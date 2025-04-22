@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import torchmetrics
+from pathlib import Path
 
 from src.cvkan.experiments.knot_dataset import load_knot_dataset
 from src.cvkan.models.CVKAN import Norms
@@ -26,7 +27,7 @@ plt.rcParams.update({
     "font.family": "Helvetica",
     "text.latex.preamble": r"\usepackage{amsfonts}"
 })
-
+vis_root_path = Path(__file__).parent
 def rbfs():
     """Create figure of real-valued RBFs forming learnable activation function (images/RBF_weighted_sum.svg)"""
     font = {'family': 'normal',
@@ -54,9 +55,9 @@ def rbfs():
     plt.legend()
 
     #plt.show()
-    plt.savefig('images/RBF_weighted_sum.svg', bbox_inches='tight', transparent=True)
+    plt.savefig(vis_root_path / '/RBF_weighted_sum.svg', bbox_inches='tight', transparent=True)
 def rbf_hats():
-    """Create figure of complex-valued RBFs (images/CRBF_hats.png)"""
+    """Create figure of complex-valued RBFs (images/CRBF_hats.pdf)"""
     font = {'family': 'normal',
             'weight': 'bold',
             'size': 22}
@@ -108,7 +109,7 @@ def rbf_hats():
     ax.set_ylabel("$\Im(x)$", labelpad=10)
     ax.set_zlabel("$RBF_\mathbb{C}(x)$", labelpad=10)
     #plt.show()
-    plt.savefig('images/CRBF_hats.png', transparent=True, bbox_inches='tight', pad_inches=0.5)
+    plt.savefig(vis_root_path / 'CRBF_hats.pdf', transparent=True, bbox_inches='tight', pad_inches=0.0)
 
 def plot_kan_square_square():
     """
@@ -193,7 +194,7 @@ def plot_ideal_zsquared():
     cplt.complex_plot3D(xs, ys, f, fontsize=24)
 if __name__ == '__main__':
     #rbfs()
-    #rbf_hats()
-    plot_kan_square_square()
+    rbf_hats()
+    #plot_kan_square_square()
     #plot_ideal_zsquared()
     #plot_kan_knot()
