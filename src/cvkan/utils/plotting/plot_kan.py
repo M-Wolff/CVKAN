@@ -247,7 +247,7 @@ class KANPlot():
             self.axs[0].add_patch(output_node_circle)
 
         # set ylim to not cut away feature names or output names
-        self.axs[0].set_ylim(-1, len(self.model.get_kan_layers()) - 0.5)
+        self.axs[0].set_ylim(-1, len(self.model.get_kan_layers()) + 0.5)
         # increase xlim slightly
         current_xlim = self.axs[0].get_xlim()
         self.axs[0].set_xlim(current_xlim[0]-0.2, current_xlim[1]+0.2)
