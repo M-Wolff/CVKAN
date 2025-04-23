@@ -90,7 +90,7 @@ class KANPlot():
 
         if self.complex_valued:
             # if complex-valued the right detail plot needs to be a 3d projection
-            fig = plt.figure(figsize=plt.figaspect(2.))
+            fig = plt.figure(figsize=(24, 8))
             axs = [None, None]
             axs[0] = fig.add_subplot(1, 2, 1)
             axs[1] = fig.add_subplot(1, 2, 2, projection='3d')
@@ -139,12 +139,14 @@ class KANPlot():
         # and one single activation function in detail
         self.plot_single_function()
         plt.show()
+        #plt.savefig("figure.svg", format="svg", dpi=600)
 
     def calc_opaqueness(self, relevance):
         """
         Calculate the opaqueness of an Edge / Node based on it's relevance score
         """
         result = self.beta * math.tanh(relevance)  # same as for pyKAN 2.0
+        #result = self.beta * math.tanh(relevance/50)  # scale by factor 50 to make smaller differences more visible (good for the knot dataset plots)
         return np.clip(result, 0, 1)  # clip to range [0,1]
     def update_transparency(self, slider_value=None):
         """
@@ -156,14 +158,15 @@ class KANPlot():
         # iterate through all the visible components in the plot and change their alpha values
         # activation functions (each function_type)
         for function_type in self.act_functs.keys():
-            for l_i_j_index in self.act_functs[function_type].keys():
-                for spline_function in self.act_functs[function_type][l_i_j_index]:
-                    spline_function.set_alpha(self.calc_opaqueness(self.kan_explainer.get_edge_relevance(l_i_j_index)))
-                    # update their visibilities as desired (invisible / visible) as self.plot_options dictates
-                    if not self.plot_options[self.function_types.index(function_type)]:
-                        spline_function.set_visible(False)
-                    else:
-                        spline_function.set_visible(True)
+            for l_i_j_index in self.connections.keys():
+                if function_type in self.act_functs and l_i_j_index in self.act_functs[function_type]:
+                    for spline_function in self.act_functs[function_type][l_i_j_index]:
+                        spline_function.set_alpha(self.calc_opaqueness(self.kan_explainer.get_edge_relevance(l_i_j_index)))
+                        # update their visibilities as desired (invisible / visible) as self.plot_options dictates
+                        if not self.plot_options[self.function_types.index(function_type)]:
+                            spline_function.set_visible(False)
+                        else:
+                            spline_function.set_visible(True)
                 # set alpha of vertices
                 self.connections[l_i_j_index].set_alpha(self.calc_opaqueness(self.kan_explainer.get_edge_relevance(l_i_j_index)))
         # also update the plotted coordinatesystems
@@ -220,15 +223,15 @@ class KANPlot():
                 linebroken = ""
                 for j, c in enumerate(input_featurenames[i]):
                     linebroken += c
-                    if j % 10 == 0 and j > 0:
+                    if j % 18 == 0 and j > 0:
                         linebroken += "\n"
                 input_featurenames[i] = linebroken
             assert self.model.get_layersizes()[0] == len(input_featurenames)
             # plot input featurenames
             for i in range(self.model.get_layersizes()[0]):
                 textbox_xpos = self.nodeid2xpos(i, self.model.get_layersizes()[0])
-                self.textboxes_input_featurenames[i] = self.axs[0].text(textbox_xpos, -0.2, input_featurenames[i], horizontalalignment='center',
-                         verticalalignment='center', rotation=90, fontsize=16, bbox=dict(facecolor='none', edgecolor='red'))
+                self.textboxes_input_featurenames[i] = self.axs[0].text(textbox_xpos, -0.5, input_featurenames[i], horizontalalignment='center',
+                         verticalalignment='center', rotation=90, fontsize=12, bbox=dict(facecolor='none', edgecolor='red'))
         # plot output names
         for i in range(self.model.get_layersizes()[-1]):
             if self.output_names is not None:
@@ -244,7 +247,10 @@ class KANPlot():
             self.axs[0].add_patch(output_node_circle)
 
         # set ylim to not cut away feature names or output names
-        self.axs[0].set_ylim(-0.5, len(self.model.get_kan_layers()) + 0.5)
+        self.axs[0].set_ylim(-1, len(self.model.get_kan_layers()) - 0.5)
+        # increase xlim slightly
+        current_xlim = self.axs[0].get_xlim()
+        self.axs[0].set_xlim(current_xlim[0]-0.2, current_xlim[1]+0.2)
         # clicks (later checked if it was double-click) lead to focus on single node
         self.fig.canvas.mpl_connect('button_press_event', self.on_mouse_press)
         self.update_transparency()
@@ -423,7 +429,8 @@ class KANPlot():
                 link_angle = math.asin(1/link_length)
                 plot_at_ypos = math.sin(link_angle) * plot_at_link_length + layer_id
                 factor = -1 if node_j_xpos < node_i_xpos else 1
-                plot_at_xpos = factor * math.cos(link_angle) * plot_at_link_length + node_i_xpos
+                # add very small offset 0.02 to have nicer plot
+                plot_at_xpos = factor * math.cos(link_angle) * plot_at_link_length + node_i_xpos - 0.02
                 # plot activation function using new axis
                 self.plot_act_funct(plot_at_xpos, plot_at_ypos, act_xs, act_ys, (layer_id, i, j), color=_COLORS[i%len(_COLORS)])
                 # plot connecting line between the nodes in subsequent functions
@@ -477,4 +484,5 @@ class KANPlot():
             except ValueError:
                 print("Wrong choice for l,i,j input! (needs to be 3 integers separated by comma). Given:", l_i_j_index)
             except IndexError:
-                print("Wrong choice for l,i,j input! (Edge l,i,j need to exist). Given:", l_i_j_index)
+                print("Wrong choice for l,i,j input! (Edge l,i,j needs to exist). Given:", l_i_j_index)
+
