@@ -314,10 +314,14 @@ def complex_plot3D(x, y, f,
     
     if contour3D == True:
         contour = ax.contour3D(x, y, abs_f, alpha=0.5, colors='black', levels=20)
-        plotted_objects.append(contour)
-    
+        # contours do not support methods used on Artists. The Artists are in countour.collections attribute
+        for artist in contour.collections:
+            plotted_objects.append(artist)
     contour = ax.contourf(x, y, np.log2(abs_f+1), zdir='z', offset=offset  , cmap="gist_yarg_r", levels=50)
-    plotted_objects.append(contour)
+    # contours do not support methods used on Artists. The Artists are in countour.collections attribute
+    for artist in contour.collections:
+        plotted_objects.append(artist)
+    
     ax.tick_params(axis='x', which='major', labelsize=fontsize, pad=fontsize//8)
     ax.tick_params(axis='y', which='major', labelsize=fontsize, pad=fontsize // 8)
     ax.tick_params(axis='z', which='major', labelsize=fontsize, pad=fontsize // 2)
@@ -331,19 +335,19 @@ def complex_plot3D(x, y, f,
     if fig_ax is None:
         if return_image:
             # save figure, read it using matplotlib and return it
-            plt.savefig("temp.jpg", dpi=600, transparent=False)
+            plt.savefig("temp.png", dpi=200, transparent=True)
             plt.close(fig)
-            image= matplotlib.image.imread("temp.jpg")
-            # create additional alpha channel for image
-            rgba_image = np.zeros((image.shape[0], image.shape[1], 4), dtype=image.dtype)
+            image= matplotlib.image.imread("temp.png")
+            # create additional alpha channel for image (only neccessary for .jpg)
+            #rgba_image = np.zeros((image.shape[0], image.shape[1], 4), dtype=image.dtype)
             # copy RGB without changes
-            rgba_image[:,:, :3] = image
+            #rgba_image[:,:, :3] = image
             # set alpha channel to 255 if pixel is very white (> 0.99*255 intensity)
-            white_threshold = 0.99*255
-            mask = np.all(image > white_threshold, axis=-1)
-            rgba_image[..., 3] = np.where(mask, 1, 255)
+            #white_threshold = 0.9*255
+            #mask = np.all(image > white_threshold, axis=-1)
+            #rgba_image[..., 3] = np.where(mask, 1, 1)
 
-            return rgba_image
+            return image
         else:
             plt.show()
     else:  # if fig_ax is given: plot directly **into** the given figure and axis
