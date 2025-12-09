@@ -2,7 +2,12 @@
 Authors: Matthias Wolff, Florian Eilers, Xiaoyi Jiang \
 University of Münster, Department of Computer Science
 
-Link to Paper: https://arxiv.org/abs/2502.02417
+Conference Paper: M. Wolff, F. Eilers and X. Jiang, "CVKAN: Complex-Valued Kolmogorov-Arnold Networks," 2025 International Joint Conference on Neural Networks (IJCNN), Rome, Italy, 2025, pp. 1-9, doi: 10.1109/IJCNN64981.2025.11227425
+
+
+Available on IEEEXplore: https://ieeexplore.ieee.org/document/11227425
+
+Link to arXiv Paper: https://arxiv.org/abs/2502.02417
 
 ---
 
