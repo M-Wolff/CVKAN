@@ -2,7 +2,7 @@ from cvkan import CVKANWrapper, train_kans, KANPlot
 from cvkan.models.CVKAN import Norms
 from cvkan.utils import create_complex_dataset, CSVDataset
 from cvkan.utils.loss_functions import MSE, MAE
-
+import torch
 
 # Generate dataset for f(z)=(z1^2 + z2^2)^2
 f_squaresquare = lambda x: (x[:,0]**2 + x[:,1]**2)**2
@@ -28,7 +28,8 @@ results = train_kans(cvkan_model,  # model
            batch_size=1000,  # batch size for training
            kan_explainer=None,  # we could specify an explainer to make edge's transparency represent edge's relevance
            add_softmax_lastlayer=False,  # we don't need softmax after last layer (as we are doing regression)
-           last_layer_output_real=False  # last layer should also have complex-valued output (regression)
+           last_layer_output_real=False,  # last layer should also have complex-valued output (regression)
+           #device=torch.device("cpu")
            )
 print("results of training: \n", results)
 

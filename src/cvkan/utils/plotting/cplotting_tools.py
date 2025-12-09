@@ -315,11 +315,11 @@ def complex_plot3D(x, y, f,
     if contour3D == True:
         contour = ax.contour3D(x, y, abs_f, alpha=0.5, colors='black', levels=20)
         # contours do not support methods used on Artists. The Artists are in countour.collections attribute
-        for artist in contour.collections:
+        for artist in contour.allsegs:
             plotted_objects.append(artist)
     contour = ax.contourf(x, y, np.log2(abs_f+1), zdir='z', offset=offset  , cmap="gist_yarg_r", levels=50)
     # contours do not support methods used on Artists. The Artists are in countour.collections attribute
-    for artist in contour.collections:
+    for artist in contour.allsegs:
         plotted_objects.append(artist)
     
     ax.tick_params(axis='x', which='major', labelsize=fontsize, pad=fontsize//8)
